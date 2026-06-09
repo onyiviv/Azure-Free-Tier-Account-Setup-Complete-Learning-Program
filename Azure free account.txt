@@ -1,0 +1,68 @@
+Account Creation & Registration Narrative
+Setting up an Azure  free-tier account requires a multi-step verification process to ensure identity validity and billing compliance.
+Step-by-Step Signup Process:
+Initiation: Navigated to the Azure Free Account portal and selected Start free.
+Identity Authentication: Signed in using a dedicated Microsoft account.
+Profile Verification: I entered personal details (Name, Email, and Phone Number). Verified the phone number via a one-time SMS verification code.
+Card Verification: I provided credit card information for identity verification. Note: Azure applies a temporary authorization hold ($1 USD) which is reversed immediately. No charges are incurred during the free trial period.
+Agreement: I accepted the subscription agreement and privacy statement to initialize the Azure Tenant.
+2. Azure Portal Navigation & UI Architecture
+Efficient cloud management relies on a solid understanding of the Azure Portal interface. The ecosystem is structured around three primary navigation pillars:
+The Global Search Bar: Located at the top center. It is the fastest way to locate services, resource groups, documentation, and specific deployment instances.
+The Left-Hand Navigation Menu (Flyout Panel): Provides direct access to core cloud categories like All resources, Resource groups, App Services, Virtual Machines, and Microsoft Entra ID.
+The Azure Home Screen: Displays recently accessed services, quick-start tools, and overall subscription health.
+3. Dashboard Customization
+To optimize operational visibility, a custom operational dashboard was constructed to track critical deployed assets (VMs, VNets, and Network Security Groups).
+Steps to Customize the Dashboard:
+Navigated to the Azure Home screen and selected Dashboard from the top-left menu.
+Clicked Edit in the top command bar to enter customization mode.
+Utilized the Tile Gallery to drag and drop functional widgets onto the canvas, including:
+All Resources Grid: For instant visibility into active deployments.
+Resource Groups List: To easily manage logical boundaries.
+Clock / Markdown Tiles: For operational notes.
+Clicked Save to lock in the configuration as "My Dashboard".
+4. Security Baseline: Multi-Factor Authentication (MFA)
+Securing the root/administrator account is paramount to preventing unauthorized tenant access.
+Steps Taken to Enforce Identity Security:
+I navigated to Microsoft Entra ID (formerly Azure Active Directory).
+Under the Manage sub-menu, selected Users and clicked on the primary administrator profile.
+I accessed Manage MFA or configured a Conditional Access Policy to mandate strong authentication.
+I registered a mobile device via the Microsoft Authenticator App to bind the account to Time-based One-Time Passwords (TOTP) and push notifications.
+5. Billing, Budgeting, & Cost Management
+To prevent unexpected cloud spend and enforce strict budget guardrails, a formal spending cap was implemented within the billing platform.
+Steps to Create a Budget & Alerts:
+Searched for and selected Cost Management + Billing from the global search bar.
+Selected Budgets from the left-hand menu and clicked + Add.
+Budget Details: Set the budget scope to the primary subscription, named it Project-Budget, set the reset period to Monthly, and defined a strict allocation limit.
+Alert Conditions: Configured a critical Actual Cost Alert Threshold at 75% of the budgeted amount.
+Notification: Attached an email notification recipient to ensure instant delivery of automated alerts when spending triggers are met.
+6. Azure Free Tier Limits & Resource Matrix
+To maintain operations entirely within the non-chargeable boundaries of the Azure Free Account, deployments must align with the specific limits defined below:
+Service / Resource Type	Free Tier Allocated Quota	Operational Purpose
+Linux Virtual Machines	750 Hours of B1s burstable VMs per month	Application hosting & compute
+Windows Virtual Machines	750 Hours of B1s burstable VMs per month	Administrative / Jumpbox hosts
+Azure Blob Storage	5 GB of LRS (Locally Redundant Storage)	Static web hosting & asset storage
+Azure Managed Disks	2 x 64 GB P6 Premium SSDs	OS & Data storage for VM runtimes
+Azure SQL / PostgreSQL	750 Hours of flexible/burstable instances	Relational database backends
+7. Operational Checklist & Verification
+Before marking this deployment phase complete, the environment was validated against the following technical criteria:
+[x] Account registration completed and credit balance confirmed.
+[x] Multi-Factor Authentication (MFA) active on the root account.
+[x] Custom operational dashboard built, pinned, and saved.
+[x] Automated budget alert configured explicitly at 75% actual spend.
+[x] Virtual Network (VNet) topology and subnets verified.
+[x] Virtual Machine instances configured inside Free Tier SKUs (B1s).
+8. Troubleshooting Section & Support Resources
+Common Issues & Resolutions:
+1. Issue: "Subscription Not Authorized for SKU" when launching a VM.
+Cause: Attempting to deploy a VM size that is not supported by the Free Tier or is restricted in the chosen geographical region.
+Resolution: Change the VM Size setting to Standard_B1s and ensure the deployment region matches a location with available free quotas (e.g., East US or Central India).
+2. Issue: Budget Alerts not triggering an email.
+Cause: Typo in the notification email field or the email being flagged as spam.
+Resolution: Navigate back to Cost Management > Budgets, edit the existing budget, and verify that the notification email address is spelt correctly. Check junk folders for emails originating from microsoft-noreply@microsoft.com.
+3. Issue: MFA Prompt Loop on the Brave Browser.
+Cause: Aggressive ad-blocking or cookie-blocking shields breaking the SAML single-sign-on tokens.
+Resolution: Click the Brave Shield icon in the address bar and toggle shields OFF specifically for portal.azure.com.
+Official Support Resources:
+Azure Documentation Portal: https://learn.microsoft.com
+Azure Billing Support: Free tier accounts include complimentary access to subscription management and billing support via the Help + Support blade in the portal.
